@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE CORRIDOIO - Voice of the Students</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="bg-giornalino">
+
+    <nav class="sidebar">
+        <div class="sidebar-title">Sfoglia 📖</div>
+        <a href="giornalino.html" class="nav-btn active">Prima Pagina</a>
+        <a href="pag2.html" class="nav-btn">Pag 2 - Diario della scuola</a>
+        <a href="pag3.html" class="nav-btn">Pag 3 - La voce del corridoio</a>
+        <a href="pag4.html" class="nav-btn">Pag 4 - Passa la parola</a>
+        <a href="pag5.html" class="nav-btn">Pag 5 - SOS scuola</a>
+        <a href="pag6.html" class="nav-btn">Pag 6 - Dietro la lavagna</a>
+        <a href="pag7.html" class="nav-btn">Pag 7 - Creative Zone</a>
+        <a href="pag8.html" class="nav-btn">Pag 8 - Community</a>
+        <a href="quiz.html" class="nav-btn">Quiz</a>
+        <a href="../index.html" class="nav-btn">⬅ Torna all'Archivio</a>
+    </nav>
+
+    <div class="newspaper-container">
+        <header>
+            <h1>THE CORRIDOIO</h1>
+            <div class="ticker">🔥 MAGGIO 2026: SMENTITA LA DAD • SPOILER NUOVA MATURITÀ • ALLO STUDIO LE LINEE GUIDA SULL'IA IN CLASSE 🔥</div>
+        </header>
+
+        <main class="grid-layout">
+             <div class="card">
+                <div>
+                    <span class="badge badge-attualita">🌍 Diario della scuola - Pag 2</span>
+                    <h2>Vittoria Innovativa</h2>
+                    <p>L'istituto vince la Fiera Nazionale delle Scuole Innovative con il progetto StudyHub creato dagli studenti.</p>
+                </div>
+                <a class="go-link" onclick="openPopup('pop-p2')">Leggi Anteprima</a>
+            </div>
+            <div class="card main-viral">
+                <div>
+                    <span class="badge badge-voce">🏛️ voci di corridoio - Pag 3</span>
+                    <h2>Info ministero: Stop fake news DAD & Spoiler Maturità</h2>
+                    <p>Smontato il panico DAD per maggio: si resta in classe! Novità shock per l'orale di Maturità e boom della filiera 4+2.</p>
+                </div>
+                <a class="go-link" onclick="openPopup('pop-p3')">Leggi Chiarimenti</a>
+            </div>
+            <div class="card">
+                <div>
+                    <span class="badge badge-passa">✈️ Passa Parola - Pag 4</span>
+                    <h2>Maturità in arrivo</h2>
+                    <p>Luca ha intervistato Marco, ex neodiplomato, su ansia, aspettative e consigli per affrontare l'ultimo anno con più serenità.</p>
+                </div>
+                <a class="go-link" onclick="openPopup('pop-p4')">Leggi Anteprima</a>
+            </div>
+            <div class="card">
+                <div>
+                    <span class="badge badge-sos">⚠️ SOS Scuola - Pag 5</span>
+                    <h2>Task Force in Azione</h2>
+                    <p>Una rete di studenti tutor pronti ad aiutarti con latino, matematica, fisica e chimica, senza ansia da professore.</p>
+                </div>
+                <a class="go-link" onclick="openPopup('pop-p5')">Leggi Anteprima</a>
+            </div>
+            <div class="card">
+                <div>
+                    <span class="badge badge-pod">🎙️ Dietro la lavagna - Pag 6</span>
+                    <h2>La Scuola dal Dentro</h2>
+                    <p>Intervista doppia a una professoressa e a un collaboratore scolastico: come vivono la scuola dietro le quinte e cosa significa prendersi cura degli studenti.</p>
+                </div>
+                <a class="go-link" onclick="openPopup('pop-p6')">Leggi Anteprima</a>
+            </div>
+            <div class="card">
+                <div>
+                    <span class="badge badge-creative">🎨 Creative Zone - Pag 7</span>
+                    <h2>Top 5 Canzoni</h2>
+                    <p>La classifica delle canzoni più amate dagli studenti, con cover locali e link diretti alle playlist del momento.</p>
+                </div>
+                <a class="go-link" onclick="openPopup('pop-p7')">Leggi Anteprima</a>
+            </div>
+            <div class="card">
+                <div>
+                    <span class="badge badge-Community">💬 Community - Pag 8</span>
+                    <h2>Spazio Libero</h2>
+                    <p>I pensieri, i dibattiti accesi e i punti di vista degli studenti sui temi caldi della scuola e del futuro.</p>
+                </div>
+                <a class="go-link" onclick="openPopup('pop-p8')">Leggi Anteprima</a>
+            </div>
+            <div class="card">
+                <div>
+                    <span class="badge badge-sos">🎯 Quiz Interattivo</span>
+                    <h2>Gioca con il Corridoio</h2>
+                    <p>Metti alla prova la cultura generale con domande rapide e divertenti direttamente dalla homepage.</p>
+                </div>
+                <a class="go-link" onclick="openPopup('pop-quiz')">Anteprima Quiz</a>
+            </div>
+        </main>
+    </div>
+
+    <!-- POPUP ANTEPRIMA -->
+    <div id="pop-p6" class="popup-slide">
+        <div class="popup-content">
+            <button class="close-btn" onclick="closePopup('pop-p6')">X</button>
+            <h1>La Scuola dal Dentro</h1>
+            <p>Abbiamo intervistato una professoressa e un collaboratore scolastico per raccontare il lavoro dietro le aule.</p>
+            <a href="pag6.html" class="deep-link">Vai alla pagina 2 completa ➔</a>
+        </div>
+    </div>
+    <div id="pop-p5" class="popup-slide">
+        <div class="popup-content">
+            <button class="close-btn" onclick="closePopup('pop-p5')">X</button>
+            <h1>Task Force SOS Scuola</h1>
+            <p>Ammettiamolo: a metà anno molti compiti sembrano scritti in alieno, ma qui trovi tutor con media alta pronti a spiegare passo dopo passo.</p>
+            <p>Scopri Matteo, Elena, Sara e Federico, i nostri specialisti.</p>
+            <a href="pag5.html" class="deep-link">Vai alla pagina 3 completa ➔</a>
+        </div>
+    </div>
+    <div id="pop-p2" class="popup-slide">
+        <div class="popup-content">
+            <button class="close-btn" onclick="closePopup('pop-p2')">X</button>
+            <h1>Vittoria Innovativa</h1>
+            <p>La nostra scuola conquista la Fiera Nazionale delle Scuole Innovative con StudyHub.</p>
+            <a href="pag2.html" class="deep-link">Vai alla pagina 4 completa ➔</a>
+        </div>
+    </div>
+    <div id="pop-p3" class="popup-slide">
+        <div class="popup-content">
+            <button class="close-btn" onclick="closePopup('pop-p3')">X</button>
+            <h1>Voci di Corridoio: Info Ministeriali</h1>
+            <p><strong>🛑 No DAD:</strong> Il Ministero ha smentito il ritorno alla DAD. Si resta in presenza!</p>
+            <p><strong>🎓 Maturità 2026:</strong> Orale su 4 materie, ruolo centrale all'E-Portfolio e al Capolavoro.</p>
+            <p><strong>🎒 Riforme:</strong> Boom del 4+2 e +32% per il Liceo del Made in Italy.</p>
+            <a href="pag3.html" class="deep-link">Apri Pagina 5 Completa ➔</a>
+        </div>
+    </div>
+    <div id="pop-p4" class="popup-slide">
+        <div class="popup-content">
+            <button class="close-btn" onclick="closePopup('pop-p4')">X</button>
+            <h1>Maturità in arrivo</h1>
+            <p>Luca ha chiesto a Marco, ex studente neodiplomato, consigli sinceri per superare la maturità senza crollare.</p>
+            <a href="pag4.html" class="deep-link">Vai alla pagina 6 completa ➔</a>
+        </div>
+    </div>
+    <div id="pop-p7" class="popup-slide">
+        <div class="popup-content">
+            <button class="close-btn" onclick="closePopup('pop-p7')">X</button>
+            <h1>Top 5 Canzoni del Momento</h1>
+            <p>La classifica musicale del mese con i brani più ascoltati dagli studenti.</p>
+            <a href="pag7.html" class="deep-link">Vai alla pagina 7 completa ➔</a>
+        </div>
+    </div>
+    <div id="pop-p8" class="popup-slide">
+        <div class="popup-content">
+            <button class="close-btn" onclick="closePopup('pop-p8')">X</button>
+            <h1>Spazio Libero & Community</h1>
+            <p>Lettere aperte alla preside, editoriali sul benessere psicologico e uno spazio totalmente gestito dai vostri punti di vista.</p>
+            <a href="pag8.html" class="deep-link">Vai alla pagina 8 completa ➔</a>
+        </div>
+    </div>
+    <div id="pop-quiz" class="popup-slide">
+        <div class="popup-content">
+            <button class="close-btn" onclick="closePopup('pop-quiz')">X</button>
+            <h1>Quiz Interattivo</h1>
+            <p>Prova il nostro quiz con domande rapide sulla scuola e la cultura generale.</p>
+            <a href="quiz.html" class="deep-link">Vai al Quiz ➔</a>
+        </div>
+    </div>
+
+    <div id="bro-ai">
+        <div class="ai-toggle" onclick="toggleBroAi()">❓</div>
+        <div class="ai-popup">
+            <div class="ai-title"><span>🤖 BRO-AI v2.0</span></div>
+            <div class="ai-content">
+                <p>Benvenuto su THE CORRIDOIO. Vuoi una guida rapida ai contenuti?</p>
+                <div class="ai-buttons">
+                    <button class="ai-chip" onclick="location.href='pag3.html'">📚 Vai a SOS Scuola</button>
+                    <button class="ai-chip" onclick="location.href='pag7.html'">🎧 Vai a Creative Zone</button>
+                    <button class="ai-chip" onclick="location.href='quiz.html'">🎯 Vai al Quiz</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

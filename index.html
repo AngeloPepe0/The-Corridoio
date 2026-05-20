@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE CORRIDOIO - Archivio</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-index">
+
+<header>
+    <h1>📚 ARCHIVIO THE CORRIDOIO</h1>
+</header>
+
+<div class="container">
+    <div class="archive-grid">
+        <div class="card" onclick="openPopup('gennaio')">
+            <h3>Gennaio 2026</h3>
+            <p>Nuovo anno e orientamento scolastico</p>
+        </div>
+        <div class="card" onclick="openPopup('febbraio')">
+            <h3>Febbraio 2026</h3>
+            <p>Sanremo, verifiche e caos pre-scrutini</p>
+        </div>
+        <div class="card" onclick="openPopup('marzo')">
+            <h3>Marzo 2026</h3>
+            <p>Gite e progetti creativi</p>
+        </div>
+        <div class="card" onclick="openPopup('aprile')">
+            <h3>Aprile 2026</h3>
+            <p>Verifiche e stress finale</p>
+        </div>
+        <div class="card" onclick="window.location.href='html/giornalino.html'">
+            <h3>Maggio 2026</h3>
+            <p>Edizione live THE CORRIDOIO - IA e maturità</p>
+        </div>
+    </div>
+
+    <div class="newsletter">
+        <h2>📩 NEWSLETTER</h2>
+        <p>Ricevi ogni nuova edizione del giornalino</p>
+        <input type="email" id="email" placeholder="studente@email.com">
+        <button onclick="saveEmail()">ISCRIVITI</button>
+        <p id="msg"></p>
+    </div>
+</div>
+
+<div class="popup" id="gennaio">
+    <div class="popup-content">
+        <button class="close" onclick="closePopup('gennaio')">X</button>
+        <h2>Gennaio 2026</h2>
+        <p>Ripresa scolastica e nuovi obiettivi dell'anno.</p>
+    </div>
+</div>
+<div class="popup" id="febbraio">
+    <div class="popup-content">
+        <button class="close" onclick="closePopup('febbraio')">X</button>
+        <h2>Febbraio 2026</h2>
+        <p>Sanremo, interrogazioni e tensione pre-scrutini.</p>
+    </div>
+</div>
+<div class="popup" id="marzo">
+    <div class="popup-content">
+        <button class="close" onclick="closePopup('marzo')">X</button>
+        <h2>Marzo 2026</h2>
+        <p>Gite scolastiche e progetti creativi tra studenti.</p>
+    </div>
+</div>
+<div class="popup" id="aprile">
+    <div class="popup-content">
+        <button class="close" onclick="closePopup('aprile')">X</button>
+        <h2>Aprile 2026</h2>
+        <p>Mese delle verifiche e sopravvivenza scolastica.</p>
+    </div>
+</div>
+
+<div id="bro-ai">
+    <div class="ai-toggle" onclick="toggleBroAi()">❓</div>
+    <div class="ai-popup">
+        <div class="ai-title"><span>🤖 BRO-AI v2.0</span></div>
+        <div class="ai-content">
+            <p>Vuoi tornare rapidamente al giornalino o trovare gli archivi più interessanti?</p>
+            <div class="ai-buttons">
+                <button class="ai-chip" onclick="location.href='html/giornalino.html'">🏠 Torna alla prima pagina</button>
+                <button class="ai-chip" onclick="location.href='html/pag4.html'">🏆 Leggi il Diario della scuola</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
