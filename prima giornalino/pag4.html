@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE CORRIDOIO - Diario della scuola (Pag. 4)</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Impact', 'Arial Black', sans-serif; }
+        body { background-color: #3f51b5; background-image: radial-gradient(#0fffff 1px, transparent 0); background-size: 24px 24px; color: #000; padding: 15px; display: flex; min-height: 100vh; }
+        .sidebar { width: 180px; background: #000; padding: 20px 10px; display: flex; flex-direction: column; gap: 12px; border: 4px solid #fff; box-shadow: 6px 6px 0px #000; }
+        .sidebar-title { color: #fffb00; font-size: 1.1rem; text-transform: uppercase; text-align: center; margin-bottom: 10px; border-bottom: 2px dashed #fff; padding-bottom: 5px; }
+        .nav-btn { background: #fff; color: #000; border: 3px solid #000; padding: 8px; text-align: center; text-decoration: none; font-size: 0.9rem; text-transform: uppercase; cursor: pointer; transition: 0.2s; }
+        .nav-btn:hover, .nav-btn.active { background: #ff007f; color: #fff; transform: translate(2px, 2px); }
+        .page-container { flex: 1; max-width: 850px; margin: 0 auto 0 20px; background: #fff; border: 6px solid #000; box-shadow: 12px 12px 0px #000; padding: 30px; position: relative; }
+        .page-badge { display: inline-block; padding: 4px 12px; font-size: 0.9rem; color: #fff; background: #3f51b5; border: 3px solid #000; text-transform: uppercase; margin-bottom: 15px; }
+        h1 { font-size: 2.2rem; text-transform: uppercase; line-height: 1.1; margin-bottom: 20px; color: #000; border-bottom: 5px solid #000; padding-bottom: 10px; }
+        .article-content { font-family: 'Arial', sans-serif; font-size: 1rem; color: #222; line-height: 1.5; }
+        .article-content p { margin-bottom: 15px; text-align: justify; }
+        .highlight-quote { background: #fffb00; border: 3px solid #000; padding: 15px; margin: 20px 0; font-family: 'Impact', sans-serif; font-size: 1.2rem; text-transform: uppercase; }
+        #bro-ai { position: fixed; bottom: 30px; right: 30px; z-index: 9999; }
+        .ai-toggle { width: 70px; height: 70px; background: linear-gradient(135deg, #9c27b0, #6a1b9a); border: 4px solid #000; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; box-shadow: 4px 4px 0px #000; transition: all 0.2s; user-select: none; }
+        .ai-toggle:hover { transform: scale(1.05); box-shadow: 6px 6px 0px #000; }
+        .ai-toggle:active { transform: scale(0.95); }
+        .ai-popup { position: fixed; bottom: 120px; right: 30px; width: 320px; background: #fff; border: 5px solid #000; box-shadow: 8px 8px 0px #000; display: none; flex-direction: column; z-index: 9998; }
+        .ai-popup.open { display: flex; }
+        .ai-title { background: #ff007f; color: white; padding: 8px; display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid #000; }
+        .ai-content { padding: 12px; font-family: 'Arial', sans-serif; font-size: 0.9rem; font-weight: bold; }
+        .ai-buttons { display: grid; grid-template-columns: 1fr; gap: 6px; margin-top: 10px; }
+        .ai-chip { background: #0fffff; border: 2px solid #000; padding: 6px; cursor: pointer; font-weight: bold; font-size: 0.8rem; text-align: left; }
+        .ai-chip:hover { background: #fffb00; }
+        @media (max-width: 900px) { body { flex-direction: column; padding-bottom: 220px; } .sidebar { width: 100%; flex-direction: row; overflow-x: auto; margin-bottom: 15px; } .page-container { margin: 0; } #bro-ai { width: calc(100% - 30px); left: 15px; bottom: 10px; } }
+
+        /* BRO-AI E TESTO LEGIBILE */
+        body {
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        p, li, .content-box, .main-content-text, .article-content, .intro-text, .quote, .comment-bubble, .recap-card p, .social-embed, .info-card p, .popup-content p {
+            font-family: 'Arial', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.7;
+            letter-spacing: 0.01em;
+            color: #222;
+        }
+        .ai-toggle {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #9c27b0, #6a1b9a);
+            border: 4px solid #000;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            box-shadow: 4px 4px 0 #000;
+            transition: all 0.2s;
+            user-select: none;
+        }
+        .ai-toggle:hover {
+            transform: scale(1.05);
+        }
+        .ai-popup {
+            position: fixed;
+            bottom: 110px;
+            right: 22px;
+            width: 320px;
+            max-width: calc(100vw - 40px);
+            background: #fff;
+            border: 5px solid #000;
+            box-shadow: 8px 8px 0 #000;
+            display: none;
+            flex-direction: column;
+            z-index: 9998;
+        }
+        .ai-popup.open { display: flex; }
+        .ai-title {
+            background: #ff007f;
+            color: #fff;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 4px solid #000;
+            font-weight: bold;
+        }
+        .ai-content {
+            padding: 12px;
+            font-family: 'Arial', sans-serif;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #222;
+        }
+        .ai-buttons {
+            display: grid;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .ai-chip {
+            background: #0fffff;
+            border: 2px solid #000;
+            padding: 8px 10px;
+            cursor: pointer;
+            font-weight: bold;
+            text-align: left;
+        }
+        .ai-chip:hover { background: #fffb00; }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="sidebar-title">Sfoglia 📖</div>
+        <a href="index.html" class="nav-btn">Prima Pagina</a>
+        <a href="pag2.html" class="nav-btn">Pag 2 - Dietro la lavagna</a>
+        <a href="pag3.html" class="nav-btn">Pag 3 - SOS Scuola</a>
+        <a href="pag4.html" class="nav-btn active">Pag 4 - Diario della scuola</a>
+        <a href="pag5.html" class="nav-btn">Pag 5 - Voci di corridoio</a>
+        <a href="pag6.html" class="nav-btn">Pag 6 - Passa Parola</a>
+        <a href="pag7.html" class="nav-btn">Pag 7 - Creative Zone</a>
+        <a href="pag8.html" class="nav-btn">Pag 8 - Community</a>
+    </nav>
+    <main class="page-container">
+        <span class="page-badge">🏆 Diario della scuola - Pagina 4</span>
+        <h1>L’Istituto Aurora vince il primo premio alla Fiera Nazionale delle Scuole Innovative</h1>
+        <div class="article-content">
+            <p>Grande soddisfazione per il nostro istituto, Istituto Aurora, che nei giorni scorsi ha conquistato il primo posto alla Fiera Nazionale delle Scuole Innovative, competizione che ha riunito studenti provenienti da scuole di tutta Italia.</p>
+            <p>L’evento, ospitato per tre giorni in un grande centro congressi, aveva l’obiettivo di valorizzare i migliori progetti scolastici dedicati a innovazione, sostenibilità e collaborazione tra studenti. Più di cinquanta istituti hanno presentato idee, prototipi e attività sviluppate durante l’anno scolastico.</p>
+            <p>L’Istituto Aurora ha partecipato con il progetto “StudyHub”, una piattaforma digitale ideata dagli studenti per aiutare i ragazzi a organizzare studio, compiti e attività scolastiche in modo semplice e intuitivo. Il progetto è stato realizzato da un gruppo di studenti del triennio con il supporto dei docenti di informatica, matematica e grafica.</p>
+            <div class="highlight-quote">“Non ci aspettavamo di arrivare primi. C’erano progetti davvero impressionanti. Quando hanno annunciato il nostro nome ci siamo guardati increduli.” <br>— Martina, Team StudyHub</div>
+            <p>La giuria ha premiato soprattutto la capacità del team di combinare tecnologia e utilità pratica. Durante la presentazione finale, gli studenti hanno mostrato una dimostrazione dal vivo della piattaforma, spiegando come l’idea sia nata dall’esigenza reale di migliorare l’organizzazione dello studio quotidiano.</p>
+            <p>Anche i professori presenti hanno espresso grande orgoglio per il risultato ottenuto. Il professor Rinaldi, coordinator del progetto, ha sottolineato come il successo sia stato possibile grazie al lavoro di squadra: “La cosa più bella è stata vedere studenti con competenze diverse collaborare tra loro con entusiasmo e responsabilità.”</p>
+            <p>Oltre al trofeo del primo posto, la scuola ha ricevuto anche una menzione speciale per creatività e impatto sociale. Molti visitatori della fiera hanno infatti apprezzato l’idea di creare uno strumento pensato direttamente dagli studenti per gli studenti.</p>
+            <p>La vittoria rappresenta un importante riconoscimento per tutto l’istituto e dimostra come impegno, collaborazione e creatività possano trasformare una semplice idea in un progetto capace di distinguersi a livello nazionale.</p>
+        </div>
+    </main>
+    <div id="bro-ai">
+        <div class="ai-toggle" onclick="toggleBroAi()">❓</div>
+        <div class="ai-popup">
+            <div class="ai-title"><span>🤖 BRO-AI v2.0</span></div>
+            <div class="ai-content">
+                <p id="ai-chat">Hanno letteralmente svoltato la fiera nazionale! Che si fa adesso?</p>
+                <div class="ai-buttons">
+                    <button class="ai-chip" onclick="location.href='pag3.html'">📚 Voglio usare lo StudyHub per i compiti (SOS)</button>
+                    <button class="ai-chip" onclick="talkToBro()">🎤 C'è un'intervista a Martina?</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleBroAi() {
+            const popup = document.querySelector('.ai-popup');
+            popup.classList.toggle('open');
+        }
+        function talkToBro() { 
+            document.getElementById('ai-chat').innerHTML = "<strong>Bro-AI:</strong> Stiamo provando a portarla nel podcast di <strong>Pagina 2</strong>. Resta sintonizzato!"; 
+        }
+    </script>
+</body>
+</html>

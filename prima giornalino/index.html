@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE CORRIDOIO - Archivio</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Impact, Arial Black, sans-serif;
+}
+
+body{
+    background:#0fffff;
+    background-image: radial-gradient(#ff007f 1px, transparent 0);
+    background-size:24px 24px;
+    padding:20px;
+}
+
+/* HEADER */
+header{
+    background:#fffb00;
+    border:5px solid #000;
+    padding:20px;
+    text-align:center;
+    box-shadow:6px 6px 0 #000;
+    margin-bottom:20px;
+}
+
+header h1{
+    font-size:3rem;
+    color:#ff007f;
+    -webkit-text-stroke:2px #000;
+    text-transform:uppercase;
+}
+
+/* GRID */
+.container{
+    max-width:1100px;
+    margin:auto;
+}
+
+.archive-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:15px;
+}
+
+.card{
+    background:#fff;
+    border:4px solid #000;
+    padding:15px;
+    box-shadow:5px 5px 0 #000;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.card:hover{
+    transform:scale(1.03);
+    background:#fffb00;
+}
+
+.card h3{
+    text-transform:uppercase;
+    margin-bottom:10px;
+}
+
+/* NEWSLETTER */
+.newsletter{
+    margin-top:30px;
+    background:#000;
+    color:#fff;
+    padding:20px;
+    border:4px solid #fff;
+    box-shadow:6px 6px 0 #000;
+}
+
+.newsletter input{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    border:3px solid #fffb00;
+    font-size:1rem;
+}
+
+.newsletter button{
+    margin-top:10px;
+    width:100%;
+    padding:10px;
+    background:#ff007f;
+    color:#fff;
+    border:3px solid #fff;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.newsletter button:hover{
+    background:#0fffff;
+    color:#000;
+}
+
+#msg{
+    margin-top:10px;
+    font-family:Arial;
+}
+
+/* POPUP */
+.popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.8);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.popup.active{
+    display:flex;
+}
+
+.popup-content{
+    background:#fff;
+    border:5px solid #000;
+    padding:20px;
+    max-width:600px;
+    box-shadow:10px 10px 0 #ff007f;
+    position:relative;
+}
+
+.popup-content h2{
+    margin-bottom:10px;
+    text-transform:uppercase;
+}
+
+.close{
+    position:absolute;
+    top:-15px;
+    right:-15px;
+    background:#fffb00;
+    border:3px solid #000;
+    padding:5px 10px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.close:hover{
+    background:#ff007f;
+    color:#fff;
+}
+
+/* BRO-AI E TESTO LEGIBILE */
+body {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+p, li, .content-box, .main-content-text, .article-content, .intro-text, .quote, .comment-bubble, .recap-card p, .social-embed, .info-card p, .popup-content p {
+    font-family: 'Arial', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+    color: #222;
+}
+#bro-ai { position: fixed; bottom: 30px; right: 30px; z-index: 9999; }
+.ai-toggle { width: 70px; height: 70px; background: linear-gradient(135deg, #9c27b0, #6a1b9a); border: 4px solid #000; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 2.2rem; box-shadow: 4px 4px 0 #000; transition: all 0.2s; user-select: none; }
+.ai-toggle:hover { transform: scale(1.05); }
+.ai-popup { position: fixed; bottom: 110px; right: 22px; width: 320px; max-width: calc(100vw - 40px); background: #fff; border: 5px solid #000; box-shadow: 8px 8px 0 #000; display: none; flex-direction: column; z-index: 9998; }
+.ai-popup.open { display: flex; }
+.ai-title { background: #ff007f; color: #fff; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between; border-bottom: 4px solid #000; font-weight: bold; }
+.ai-content { padding: 12px; font-family: 'Arial', sans-serif; font-size: 0.95rem; line-height: 1.6; color: #222; }
+.ai-buttons { display: grid; gap: 8px; margin-top: 10px; }
+.ai-chip { background: #0fffff; border: 2px solid #000; padding: 8px 10px; cursor: pointer; font-weight: bold; text-align: left; }
+.ai-chip:hover { background: #fffb00; }
+</style>
+
+</head>
+
+<body>
+
+<header>
+    <h1>📚 ARCHIVIO THE CORRIDOIO</h1>
+</header>
+
+<div class="container">
+
+    <!-- ARCHIVIO ORDINATO -->
+    <div class="archive-grid">
+
+        <div class="card" onclick="openPopup('gennaio')">
+            <h3>Gennaio 2026</h3>
+            <p>Nuovo anno e orientamento scolastico</p>
+        </div>
+
+        <div class="card" onclick="openPopup('febbraio')">
+            <h3>Febbraio 2026</h3>
+            <p>Sanremo, verifiche e caos pre-scrutini</p>
+        </div>
+
+        <div class="card" onclick="openPopup('marzo')">
+            <h3>Marzo 2026</h3>
+            <p>Gite e progetti creativi</p>
+        </div>
+
+        <div class="card" onclick="openPopup('aprile')">
+            <h3>Aprile 2026</h3>
+            <p>Verifiche e stress finale</p>
+        </div>
+
+        <!-- 🔥 MAGGIO COLLEGATO AL TUO SITO PRINCIPALE -->
+        <div class="card" onclick="window.location.href='giornalino.html'">
+            <h3>Maggio 2026</h3>
+            <p>Edizione live THE CORRIDOIO - IA e maturità</p>
+        </div>
+
+    </div>
+
+    <!-- NEWSLETTER -->
+    <div class="newsletter">
+        <h2>📩 NEWSLETTER</h2>
+        <p>Ricevi ogni nuova edizione del giornalino</p>
+
+        <input type="email" id="email" placeholder="studente@email.com">
+        <button onclick="saveEmail()">ISCRIVITI</button>
+
+        <p id="msg"></p>
+    </div>
+
+</div>
+
+<!-- POPUP GENNAIO -->
+<div class="popup" id="gennaio">
+    <div class="popup-content">
+        <button class="close" onclick="closePopup('gennaio')">X</button>
+        <h2>Gennaio 2026</h2>
+        <p>Ripresa scolastica e nuovi obiettivi dell’anno.</p>
+    </div>
+</div>
+
+<!-- POPUP FEBBRAIO -->
+<div class="popup" id="febbraio">
+    <div class="popup-content">
+        <button class="close" onclick="closePopup('febbraio')">X</button>
+        <h2>Febbraio 2026</h2>
+        <p>Sanremo, interrogazioni e tensione pre-scrutini.</p>
+    </div>
+</div>
+
+<!-- POPUP MARZO -->
+<div class="popup" id="marzo">
+    <div class="popup-content">
+        <button class="close" onclick="closePopup('marzo')">X</button>
+        <h2>Marzo 2026</h2>
+        <p>Gite scolastiche e progetti creativi tra studenti.</p>
+    </div>
+</div>
+
+<!-- POPUP APRILE -->
+<div class="popup" id="aprile">
+    <div class="popup-content">
+        <button class="close" onclick="closePopup('aprile')">X</button>
+        <h2>Aprile 2026</h2>
+        <p>Mese delle verifiche e sopravvivenza scolastica.</p>
+    </div>
+</div>
+
+<script>
+
+/* POPUP */
+function openPopup(id){
+    document.getElementById(id).classList.add("active");
+}
+
+function closePopup(id){
+    document.getElementById(id).classList.remove("active");
+}
+
+/* click fuori popup */
+document.querySelectorAll(".popup").forEach(p=>{
+    p.addEventListener("click", e=>{
+        if(e.target === p){
+            p.classList.remove("active");
+        }
+    });
+});
+
+/* NEWSLETTER */
+function saveEmail(){
+    const email = document.getElementById("email").value;
+    const msg = document.getElementById("msg");
+
+    if(email.includes("@") && email.includes(".")){
+        msg.style.color="#0fffff";
+        msg.innerHTML="✅ Iscrizione completata!";
+        document.getElementById("email").value="";
+    } else {
+        msg.style.color="#ff007f";
+        msg.innerHTML="❌ Email non valida";
+    }
+}
+
+    function toggleBroAi() {
+        const popup = document.querySelector('.ai-popup');
+        popup.classList.toggle('open');
+    }
+</script>
+
+<div id="bro-ai">
+    <div class="ai-toggle" onclick="toggleBroAi()">❓</div>
+    <div class="ai-popup">
+        <div class="ai-title"><span>🤖 BRO-AI v2.0</span></div>
+        <div class="ai-content">
+            <p>Vuoi tornare rapidamente al giornalino o trovare gli archivi più interessanti? Scegli qui sotto.</p>
+            <div class="ai-buttons">
+                <button class="ai-chip" onclick="location.href='giornalino.html'">🏠 Torna alla prima pagina</button>
+                <button class="ai-chip" onclick="location.href='pag4.html'">🏆 Leggi il Diario della scuola</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
