@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE CORRIDOIO - Passa la Parola (Pag. 6)</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Impact', 'Arial Black', sans-serif; }
+        body {
+            background-color: #4caf50; /* Verde Smeraldo */
+            background-image: radial-gradient(#fffb00 1px, transparent 0);
+            background-size: 24px 24px;
+            color: #000; padding: 15px; display: flex; min-height: 100vh;
+        }
+        .sidebar {
+            width: 180px; background: #000; padding: 20px 10px; display: flex; flex-direction: column; gap: 12px; border: 4px solid #fff; box-shadow: 6px 6px 0px #000;
+        }
+        .sidebar-title { color: #fffb00; font-size: 1.1rem; text-transform: uppercase; text-align: center; margin-bottom: 10px; border-bottom: 2px dashed #fff; padding-bottom: 5px; }
+        .nav-btn { background: #fff; color: #000; border: 3px solid #000; padding: 8px; text-align: center; text-decoration: none; font-size: 0.9rem; text-transform: uppercase; cursor: pointer; transition: 0.2s; }
+        .nav-btn:hover, .nav-btn.active { background: #ff007f; color: #fff; transform: translate(2px, 2px); }
+        .page-container { flex: 1; max-width: 850px; margin: 0 auto 0 20px; background: #fff; border: 6px solid #000; box-shadow: 12px 12px 0px #000; padding: 30px; position: relative; }
+        .page-badge { display: inline-block; padding: 4px 12px; font-size: 0.9rem; color: #fff; background: #4caf50; border: 3px solid #000; text-transform: uppercase; margin-bottom: 15px; }
+        h1 { font-size: 3.5rem; text-transform: uppercase; line-height: 1; margin-bottom: 20px; color: #000; border-bottom: 5px solid #000; padding-bottom: 10px; }
+        .main-content-text { font-family: 'Arial', sans-serif; font-size: 1.1rem; font-weight: bold; color: #222; line-height: 1.6; }
+        .tips-list { background: #f5f5f5; border: 3px solid #000; padding: 15px; margin-top: 15px; list-style-type: none; }
+        .tips-list li { margin-bottom: 8px; }
+        .audio-link { display: inline-block; margin-top: 16px; background: #fffb00; color: #000; border: 3px solid #000; padding: 10px 18px; text-decoration: none; text-transform: uppercase; font-weight: bold; }
+        .audio-link:hover { background: #0fffff; }
+        #bro-ai { position: fixed; bottom: 30px; right: 30px; z-index: 9999; }
+        .ai-toggle { width: 70px; height: 70px; background: linear-gradient(135deg, #9c27b0, #6a1b9a); border: 4px solid #000; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; box-shadow: 4px 4px 0px #000; transition: all 0.2s; user-select: none; }
+        .ai-toggle:hover { transform: scale(1.05); box-shadow: 6px 6px 0px #000; }
+        .ai-toggle:active { transform: scale(0.95); }
+        .ai-popup { position: fixed; bottom: 120px; right: 30px; width: 320px; background: #fff; border: 5px solid #000; box-shadow: 8px 8px 0px #000; display: none; flex-direction: column; z-index: 9998; }
+        .ai-popup.open { display: flex; }
+        .ai-title { background: #ff007f; color: white; padding: 8px; display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid #000; }
+        .ai-content { padding: 12px; font-family: 'Arial', sans-serif; font-size: 0.9rem; font-weight: bold; }
+        .ai-buttons { display: grid; grid-template-columns: 1fr; gap: 6px; margin-top: 10px; }
+        .ai-chip { background: #0fffff; border: 2px solid #000; padding: 6px; cursor: pointer; font-weight: bold; font-size: 0.8rem; text-align: left; }
+        .ai-chip:hover { background: #fffb00; }
+        @media (max-width: 900px) { body { flex-direction: column; padding-bottom: 220px; } .sidebar { width: 100%; flex-direction: row; overflow-x: auto; margin-bottom: 15px; } .page-container { margin: 0; } #bro-ai { width: calc(100% - 30px); left: 15px; bottom: 10px; } }
+
+        /* BRO-AI E TESTO LEGIBILE */
+        body {
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        p, li, .content-box, .main-content-text, .article-content, .intro-text, .quote, .comment-bubble, .recap-card p, .social-embed, .info-card p, .popup-content p {
+            font-family: 'Arial', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.7;
+            letter-spacing: 0.01em;
+            color: #222;
+        }
+        .ai-toggle {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #9c27b0, #6a1b9a);
+            border: 4px solid #000;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            box-shadow: 4px 4px 0 #000;
+            transition: all 0.2s;
+            user-select: none;
+        }
+        .ai-toggle:hover { transform: scale(1.05); }
+        .ai-popup {
+            position: fixed;
+            bottom: 110px;
+            right: 22px;
+            width: 320px;
+            max-width: calc(100vw - 40px);
+            background: #fff;
+            border: 5px solid #000;
+            box-shadow: 8px 8px 0 #000;
+            display: none;
+            flex-direction: column;
+            z-index: 9998;
+        }
+        .ai-popup.open { display: flex; }
+        .ai-title {
+            background: #ff007f;
+            color: #fff;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 4px solid #000;
+            font-weight: bold;
+        }
+        .ai-content {
+            padding: 12px;
+            font-family: 'Arial', sans-serif;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #222;
+        }
+        .ai-buttons {
+            display: grid;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .ai-chip {
+            background: #0fffff;
+            border: 2px solid #000;
+            padding: 8px 10px;
+            cursor: pointer;
+            font-weight: bold;
+            text-align: left;
+        }
+        .ai-chip:hover { background: #fffb00; }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="sidebar-title">Sfoglia 📖</div>
+        <a href="index.html" class="nav-btn">Prima Pagina</a>
+        <a href="pag2.html" class="nav-btn">Pag 2 - Dietro la lavagna</a>
+        <a href="pag3.html" class="nav-btn">Pag 3 - SOS Scuola</a>
+        <a href="pag4.html" class="nav-btn">Pag 4 - Diario della scuola</a>
+        <a href="pag5.html" class="nav-btn">Pag 5 - Voci di corridoio</a>
+        <a href="pag6.html" class="nav-btn active">Pag 6 - Passa Parola</a>
+        <a href="pag7.html" class="nav-btn">Pag 7 - Creative Zone</a>
+        <a href="pag8.html" class="nav-btn">Pag 8 - Community</a>
+    </nav>
+    <main class="page-container">
+        <span class="page-badge">📢 Passa la Parola - Pagina 6</span>
+        <h1>Maturità in arrivo</h1>
+        <div class="main-content-text">
+            <p>Maturità in arrivo e ansia alle stelle? Per questo episodio di Passa la Parola, Luca ha intervistato Marco, ex studente neodiplomato, che ci ha raccontato paure, aspettative e consigli sinceri su uno dei periodi più stressanti... ma anche più memorabili delle superiori.</p>
+            <ul class="tips-list">
+                <li>😰 1. L'ansia è normale: trasformala in energia da studio, non in panico paralizzante.</li>
+                <li>🎯 2. Aspettative realistiche: punta a dare il meglio senza cercare la perfezione assoluta.</li>
+                <li>📚 3. Consigli pratici: simulazioni, ripassi mirati e pause regolari fanno la differenza.</li>
+            </ul>
+            <p>Qui sotto troverai il link all'audio dell'intervista non appena carico il file MP3:</p>
+            <a href="podcast.mp3" class="audio-link">Ascolta l'intervista</a>
+        </div>
+    </main>
+    <div id="bro-ai">
+        <div class="ai-toggle" onclick="toggleBroAi()">❓</div>
+        <div class="ai-popup">
+            <div class="ai-title"><span>🤖 BRO-AI v2.0</span></div>
+            <div class="ai-content">
+                <p id="ai-chat">L'America tanta roba! Vuoi scriverci anche tu un articolo per la prossima edizione?</p>
+                <div class="ai-buttons">
+                    <button class="ai-chip" onclick="location.href='pag7.html'">🎨 Portami alla Creative Zone</button>
+                    <button class="ai-chip" onclick="talkToBro()">✈️ Come si fa la richiesta per partire?</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleBroAi() {
+            const popup = document.querySelector('.ai-popup');
+            popup.classList.toggle('open');
+        }
+        function talkToBro() { document.getElementById('ai-chat').innerHTML = "<strong>Bro-AI:</strong> Trovi i moduli PDF sul sito ufficiale della scuola nella sezione 'Internazionale', oppure chiedi alla prof di Inglese!"; }
+    </script>
+</body>
+</html>
